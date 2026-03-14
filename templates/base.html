@@ -1,0 +1,87 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vijaya Developers</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="{% static 'images/logo.jpeg' %}" alt="Vijaya Developers">
+        <span class="brand-name">Vijaya Developers</span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#enquiry">More info</a></li>
+    </ul>
+</nav>
+
+{% block content %}{% endblock %}
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/+91 95679 64703" class="whatsapp-float" target="_blank">💬</a>
+
+<!-- JS -->
+<script>
+window.addEventListener("scroll", function() {
+    const navbar = document.querySelector(".navbar");
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
+});
+</script>
+
+<script>
+const faders = document.querySelectorAll('.fade-in');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+});
+
+faders.forEach(section => {
+    observer.observe(section);
+});
+</script>
+
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-col">
+            <h2>Vijaya Developers</h2>
+            <p>Building quality homes with trust, innovation, and excellence. Your dream project starts with us.</p>
+        </div>
+
+        <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>Contact Us</h3>
+            <p>Email:info@v.vijayadevelopers.com </p>
+            <p>Phone: +91 95679 64703</p>
+            <p>Location: Thiruvananthapuram, Kerala</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Vijaya Developers | All Rights Reserved
+    </div>
+</footer>
+</body>
+</html>

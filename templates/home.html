@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>BUILD YOUR DREAMS</h1>
+        <p>Professional Construction & Real Estate Solutions</p>
+        <a href="#enquiry" class="btn">Get a Quote</a>
+    </div>
+</section>
+
+<section id="about" class="fade-in">
+    <h2>ABOUT US</h2>
+</section>
+
+<section id="services" class="services-section" >
+    <h2>Our Services</h2>
+    <div class="services-container">
+        {% for service in services %}
+            <div class="service-card">
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.description }}</p>
+                {% if service.icon %}
+                    <i class="{{ service.icon }}"></i>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section id="projects" class="projects-section">
+    <h2>Our Projects</h2>
+
+    {% for project in projects %}
+        <div class="project-card">
+            <h3>{{ project.title }}</h3>
+            <p><strong>Location:</strong> {{ project.location }}</p>
+            <p>{{ project.description }}</p>
+
+            <div class="project-media">
+                {% for media in project.media.all %}
+                    {% if media.image %}
+                        <img src="{{ media.image.url }}" alt="{{ project.title }}">
+                    {% endif %}
+                    {% if media.video %}
+                        <video controls>
+                            <source src="{{ media.video.url }}">
+                        </video>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+</section>
+<section class="enquiry-section" id="enquiry">
+    <div class="enquiry-container">
+        <h2>Enquire With Us</h2>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="success-message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="tel" name="phone" placeholder="Your Phone">
+            <textarea name="message" placeholder="Your Message" rows="5"></textarea>
+            <button type="submit">Submit Enquiry</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
