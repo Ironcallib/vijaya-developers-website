@@ -1,31 +1,97 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 <section id="home" class="hero">
     <div class="hero-content">
-        <h1>BUILD YOUR DREAMS</h1>
-        <p>Professional Construction & Real Estate Solutions</p>
-        <a href="#enquiry" class="btn">Get a Quote</a>
+        <h1 class="hero-title">BUILD YOUR DREAMS</h1>
+        <p class="hero-subtitle">
+            Professional Construction & Real Estate Solutions
+        </p>
+        <a href="#enquiry" class="hero-btn">Get a Quote</a>
     </div>
 </section>
 
-<section id="about" class="fade-in">
-    <h2>ABOUT US</h2>
+<section id="about" class="about-section fade-in">
+
+    <div class="about-content">
+
+        <div class="about-text">
+            <h2>About Us</h2>
+
+            <p class="subtitle">
+                Building Excellence, Creating Value
+            </p>
+
+            <p>
+                Vijaya Developers is a trusted construction and real estate company
+                committed to delivering high-quality residential, commercial, and
+                infrastructure projects. Through innovative engineering, modern
+                construction practices, and a customer-focused approach, we transform
+                ideas into sustainable and lasting developments.
+            </p>
+
+            <p>
+                Our experienced team ensures quality workmanship, timely delivery,
+                and complete transparency throughout every stage of a project.
+            </p>
+        </div>
+
+        <div class="about-image">
+            <img src="{% static 'images/about.jpg' %}" alt="Construction Team">
+        </div>
+
+    </div>
+
+    <div class="stats-container">
+
+        <div class="stat-box">
+            <h3>150+</h3>
+            <p>Projects Completed</p>
+        </div>
+
+        <div class="stat-box">
+            <h3>10+</h3>
+            <p>Years Experience</p>
+        </div>
+
+        <div class="stat-box">
+            <h3>500+</h3>
+            <p>Happy Clients</p>
+        </div>
+
+        <div class="stat-box">
+            <h3>100%</h3>
+            <p>Quality Commitment</p>
+        </div>
+
+    </div>
+
 </section>
 
 <section id="services" class="services-section" >
     <h2>Our Services</h2>
     <div class="services-container">
         {% for service in services %}
-            <div class="service-card">
-                <h3>{{ service.title }}</h3>
-                <p>{{ service.description }}</p>
-                {% if service.icon %}
-                    <i class="{{ service.icon }}"></i>
-                {% endif %}
-            </div>
+        <div class="service-card">
+
+            {% if service.icon %}
+                <img src="{{ service.icon.url }}"
+                     alt="{{ service.title }}"
+                     class="service-icon">
+            {% endif %}
+
+            <h3>{{ service.title }}</h3>
+
+            <p>{{ service.description }}</p>
+
+        </div>
+        {% empty %}
+        <p>No services available.</p>
         {% endfor %}
+
     </div>
+
 </section>
 
 <section id="projects" class="projects-section">
